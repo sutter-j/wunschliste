@@ -10,6 +10,25 @@ Kinder; inzwischen kann es auch Geburtstags-, Oster- und sonstige Listen.
 
 ![Übersicht der Wunschliste](docs/screenshots/uebersicht.png)
 
+## Sinn und Zweck
+
+Jedes Jahr dasselbe: Die Kinder schreiben ihre Wünsche auf, und dann fragen Grosseltern,
+Gotti, Götti und Nachbarn der Reihe nach, was sie denn schenken könnten. Zwei Mal dasselbe
+Buch, und der eine grosse Wunsch bleibt übrig, weil ihn niemand allein kaufen wollte.
+
+Darum diese Seite. Was sie löst:
+
+* Die Wünsche stehen an einem Ort, mit Bild, Richtpreis und Link zum Shop, damit niemand
+  raten muss, welches Modell gemeint ist.
+* Wer etwas übernimmt, trägt seinen Namen ein, und der Wunsch ist für alle anderen weg.
+  Absprechen muss sich niemand.
+* Die Kinder dürfen mitschauen, ohne zu sehen, wer was besorgt. Die Namen der Schenkenden
+  lassen sich ausblenden, reservierte Wünsche auf Wunsch gleich mit.
+
+Bewusst nicht dabei: Konten, Anmeldung für die Gäste, Datenbank, Framework, Newsletter.
+Ein Passwort pro Liste genügt für den Familienkreis, und die Seite läuft auf dem
+günstigsten Hosting, das man finden kann.
+
 ## Schnellstart
 
 Lokal ausprobieren, mit den mitgelieferten Beispieldaten:
@@ -321,3 +340,13 @@ indem man die Dateien in `data/` löscht.
 ## Lizenz
 
 MIT, siehe [LICENSE](LICENSE).
+
+## Hinweis in eigener Sache
+
+Das hier ist ein Spassprojekt für Familie, Freunde und Verwandtschaft, entstanden für den eigenen Gebrauch. 
+Es wird nicht aktiv gewartet und nicht weiterentwickelt.
+Issues und Pull Requests bleiben also womöglich lange liegen oder unbeantwortet.
+
+Wer etwas damit anfangen kann: gerne. Nimm den Code, kopiere ihn, bau ihn um, die
+MIT-Lizenz erlaubt das alles. Nur verlassen würde ich mich nicht darauf, dass hier noch
+etwas nachkommt, und für den Betrieb auf deinem Server bist du selbst verantwortlich.
