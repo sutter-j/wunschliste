@@ -34,7 +34,7 @@ günstigsten Hosting, das man finden kann.
 Lokal ausprobieren, mit den mitgelieferten Beispieldaten:
 
 ```bash
-git clone https://github.com/dein-konto/wunschliste.git
+git clone https://github.com/sutter-j/wunschliste.git
 cd wunschliste
 cp config.example.php config.php
 cp beispiel/*.json data/ && cp beispiel/bilder/* uploads/
