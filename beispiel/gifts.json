@@ -1,0 +1,81 @@
+[
+    {
+        "id": "g_beispiel_trampolin",
+        "created_at": "2026-11-01T10:05:00+00:00",
+        "reservations": [],
+        "title": "Gartentrampolin 2,4 m",
+        "description": "Der grosse gemeinsame Wunsch. Mit Sicherheitsnetz, damit uns niemand im Beet landet.",
+        "url": "https://example.com/shop/gartentrampolin-240",
+        "image": "uploads/beispiel-trampolin.png",
+        "price": "249",
+        "priority": 3,
+        "quantity": 1,
+        "tags": ["t_gemeinsam", "t_mia", "t_elio"],
+        "list": "l_beispiel2026"
+    },
+    {
+        "id": "g_beispiel_fahrrad",
+        "created_at": "2026-11-01T10:06:00+00:00",
+        "reservations": [],
+        "title": "Kinderfahrrad 16 Zoll",
+        "description": "Mit Stützrädern und Klingel. Die Farbe ist egal, Hauptsache rot.",
+        "url": "https://example.com/shop/kinderfahrrad-16-zoll",
+        "image": "uploads/beispiel-fahrrad.png",
+        "price": "189",
+        "priority": 3,
+        "quantity": 1,
+        "tags": ["t_elio"],
+        "list": "l_beispiel2026"
+    },
+    {
+        "id": "g_beispiel_bausteine",
+        "created_at": "2026-11-01T10:07:00+00:00",
+        "reservations": [],
+        "title": "Grosse Bausteine-Box",
+        "description": "790 Teile zum Weiterbauen an dem, was schon da ist.",
+        "url": "https://example.com/shop/bausteine-box-790",
+        "image": "uploads/beispiel-bausteine.png",
+        "price": "34.90",
+        "priority": 2,
+        "quantity": 1,
+        "tags": ["t_gemeinsam"],
+        "list": "l_beispiel2026"
+    },
+    {
+        "id": "g_beispiel_buch",
+        "created_at": "2026-11-01T10:08:00+00:00",
+        "reservations": [],
+        "title": "Vorlesebuch für den Advent",
+        "description": "24 kurze Geschichten, eine pro Abend. Gerne auch ein anderes, Hauptsache zum Vorlesen.",
+        "url": "https://example.com/shop/vorlesebuch-advent",
+        "image": "uploads/beispiel-buch.png",
+        "price": "16.80",
+        "priority": 2,
+        "quantity": 2,
+        "tags": ["t_mia"],
+        "list": "l_beispiel2026"
+    },
+    {
+        "id": "g_beispiel_spiel",
+        "created_at": "2026-11-01T10:09:00+00:00",
+        "reservations": [
+            {
+                "id": "r_beispiel01",
+                "name": "Tante Rita",
+                "email": "rita@example.com",
+                "message": "Bringe ich am 24. gleich mit.",
+                "code": "BEISPIEL",
+                "created_at": "2026-11-02T18:30:00+00:00"
+            }
+        ],
+        "title": "Mein erster Spieleschatz",
+        "description": "Spielesammlung für den Spielnachmittag, ab 4 Jahren.",
+        "url": "https://example.com/shop/mein-erster-spieleschatz",
+        "image": "uploads/beispiel-spiel.png",
+        "price": "29.90",
+        "priority": 1,
+        "quantity": 1,
+        "tags": ["t_gemeinsam"],
+        "list": "l_beispiel2026"
+    }
+]

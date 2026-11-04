@@ -1,0 +1,23 @@
+[
+    {
+        "id": "t_gemeinsam",
+        "name": "Gemeinsam",
+        "color": "#2f6b45",
+        "sort": 1,
+        "list": "l_beispiel2026"
+    },
+    {
+        "id": "t_mia",
+        "name": "Mia",
+        "color": "#c8a2c8",
+        "sort": 2,
+        "list": "l_beispiel2026"
+    },
+    {
+        "id": "t_elio",
+        "name": "Elio",
+        "color": "#1f6eb4",
+        "sort": 3,
+        "list": "l_beispiel2026"
+    }
+]

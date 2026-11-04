@@ -1,0 +1,20 @@
+# Eigene Einstellungen und Zugangsdaten
+config.php
+
+# Laufzeitdaten (Wünsche, Listen, Tags, Sitzungen)
+data/*.json
+data/*.bak
+data/*.lock
+data/*.tmp
+data/sessions/
+
+# Hochgeladene Bilder
+uploads/*
+!uploads/.htaccess
+!uploads/index.html
+
+# System und Editor
+.DS_Store
+.idea/
+.vscode/
+*.swp

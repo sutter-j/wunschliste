@@ -1,0 +1,62 @@
+# ============================================================
+#  Wunschliste: Zugriffsschutz
+#  Liegt im Hauptverzeichnis und gilt für alle Unterordner.
+# ============================================================
+
+DirectoryIndex index.php
+
+# Kein Verzeichnis-Listing. Achtung: hier NICHT "-ExecCGI" setzen. Läuft PHP
+# auf dem Server als CGI/FastCGI (bei vielen Hostern der Fall), wäre damit
+# jede .php-Datei gesperrt und die ganze Seite liefert 403.
+Options -Indexes
+
+# --- 1. Datenverzeichnisse komplett sperren -----------------
+# Greift auch bei Hostern, die .htaccess in Unterordnern ignorieren.
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^data(/|$)      - [F,L]
+    RewriteRule ^lib(/|$)       - [F,L]
+    RewriteRule ^tools(/|$)     - [F,L]
+    RewriteRule (^|/)\.         - [F,L]
+</IfModule>
+
+# --- 2. Datendateien nie ausliefern -------------------------
+<FilesMatch "\.(json|csv|bak|tmp|lock|log|md|ini|sql|sqlite|db|yml|yaml|env)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# --- 3. Konfiguration und Bibliotheken ----------------------
+<FilesMatch "^(config\.php|\.htaccess|\.htpasswd|\.gitignore|README\.md)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# --- 4. Programmdateien nicht direkt aufrufbar ---------------
+# Aufgerufen werden nur index.php, gift.php und admin.php.
+<FilesMatch "^(store|layout|guard|metafetch|themes)\.php$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# --- 5. Suchmaschinen fernhalten ----------------------------
+<IfModule mod_headers.c>
+    Header set X-Robots-Tag "noindex, nofollow"
+    Header set X-Content-Type-Options "nosniff"
+    Header always set Referrer-Policy "same-origin"
+</IfModule>

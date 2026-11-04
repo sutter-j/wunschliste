@@ -1,0 +1,18 @@
+[
+    {
+        "id": "l_beispiel2026",
+        "name": "Weihnachtswunschliste 2026",
+        "subtitle": "Familie Muster",
+        "slug": "weihnachten-2026",
+        "theme": "weihnachten",
+        "password": "",
+        "is_default": true,
+        "created_at": "2026-11-01T10:00:00+00:00",
+        "active": true,
+        "from": "",
+        "until": "",
+        "show_reserver_names": false,
+        "show_reserved_gifts": true,
+        "send_mail": true
+    }
+]

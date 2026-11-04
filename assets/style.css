@@ -1,0 +1,733 @@
+/* ===========================================================
+   Wunschliste: Stylesheet (mobile first)
+   Farbwelt: Weihnachtsmann-Rot, Lebkuchen, Schnee
+   =========================================================== */
+
+:root {
+    --red-900:    #5e0f18;
+    --red-800:    #7d1620;
+    --red-700:    #9c1c26;
+    --red-600:    #c0202e;   /* Weihnachtsmann-Rot */
+    --red-500:    #d93a45;
+    --ginger-900: #4a2c17;
+    --ginger-700: #7a4a22;
+    --ginger-500: #a9713f;   /* Lebkuchen */
+    --ginger-300: #d9a066;
+    --ginger-100: #f2dcc3;
+    --gold:       #e8b64c;
+    --green-600:  #2f6b45;   /* nur als Akzent: "noch verfügbar" */
+    --snow:       #fff8f1;
+    --snow-blue:  #cfe0ee;
+    --paper:      #fffdfa;
+    --ink:        #3a2318;
+    --ink-soft:   #806452;
+    --line:       #ecd9c6;
+    --radius:     18px;
+    --shadow:     0 2px 4px rgba(74, 44, 23, .06), 0 12px 26px rgba(74, 44, 23, .10);
+    --shadow-sm:  0 1px 3px rgba(74, 44, 23, .10);
+    --font-head:  Georgia, "Iowan Old Style", "Times New Roman", serif;
+    --font-body:  -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --snow:      #1c1413;
+        --paper:     #261b19;
+        --ink:       #f2e4d8;
+        --ink-soft:  #b49a87;
+        --line:      #3d2b26;
+        --ginger-100:#3d2b26;
+        --snow-blue: #41505c;
+        --shadow:    0 2px 4px rgba(0,0,0,.35), 0 12px 26px rgba(0,0,0,.40);
+        --shadow-sm: 0 1px 3px rgba(0,0,0,.45);
+    }
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--ink);
+    background: var(--snow);
+    background-image:
+        radial-gradient(circle at 10% 6%, color-mix(in srgb, var(--red-600) 8%, transparent), transparent 40%),
+        radial-gradient(circle at 92% 2%, color-mix(in srgb, var(--ginger-500) 10%, transparent), transparent 38%);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-head); line-height: 1.2; margin: 0 0 .4em; font-weight: 700;
+    overflow-wrap: break-word;
+    -webkit-hyphens: auto; hyphens: auto;   /* lieber trennen als mitten im Wort abbrechen */
+}
+h1 { font-size: 1.9rem; }
+h2 { font-size: 1.3rem; }
+p  { margin: 0 0 1em; }
+a  { color: var(--red-700); }
+img { max-width: 100%; display: block; }
+
+.wrap { width: min(1100px, 100% - 2rem); margin-inline: auto; }
+.muted { color: var(--ink-soft); }
+.small { font-size: .85rem; }
+
+/* ---------- Schneefall ---------- */
+.snow {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background-image:
+        radial-gradient(2.5px 2.5px at 20% 10%, var(--snow-blue), transparent),
+        radial-gradient(2px 2px   at 70% 28%, var(--snow-blue), transparent),
+        radial-gradient(3px 3px   at 41% 62%, var(--snow-blue), transparent),
+        radial-gradient(2px 2px   at 88% 78%, var(--snow-blue), transparent),
+        radial-gradient(2.5px 2.5px at 9% 86%, var(--snow-blue), transparent),
+        radial-gradient(2px 2px   at 55% 94%, var(--snow-blue), transparent);
+    background-size: 400px 400px;
+    opacity: .65;
+    animation: snowfall 24s linear infinite;
+}
+@keyframes snowfall { from { background-position: 0 0; } to { background-position: 70px 400px; } }
+@media (prefers-reduced-motion: reduce) { .snow { animation: none; } }
+
+/* ---------- Kopf ---------- */
+.site-header {
+    position: relative;
+    background: linear-gradient(170deg, var(--red-600) 0%, var(--red-800) 70%, var(--red-900) 100%);
+    color: #fff;
+    padding: 2.2rem 0 2rem;
+    overflow: hidden;
+    z-index: 1;
+}
+/* Schnee im Kopf */
+.site-header::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image:
+        radial-gradient(2.5px 2.5px at 15% 20%, rgba(255,255,255,.95), transparent),
+        radial-gradient(2px 2px   at 62% 12%, rgba(255,255,255,.8), transparent),
+        radial-gradient(3px 3px   at 38% 70%, rgba(255,255,255,.9), transparent),
+        radial-gradient(2px 2px   at 85% 48%, rgba(255,255,255,.75), transparent),
+        radial-gradient(2.5px 2.5px at 72% 86%, rgba(255,255,255,.85), transparent);
+    background-size: 260px 260px;
+    animation: snowfall 18s linear infinite;
+    opacity: .9;
+}
+@media (prefers-reduced-motion: reduce) { .site-header::before { animation: none; } }
+/* Schneehaufen am unteren Rand */
+.site-header::after {
+    content: "";
+    position: absolute; inset: auto 0 -2px 0; height: 24px;
+    background: radial-gradient(circle at 16px -2px, var(--snow) 16px, transparent 17px) repeat-x;
+    background-size: 32px 24px;
+}
+.header-inner { position: relative; z-index: 2; }
+.header-logout {
+    position: absolute; top: 0; right: 0; z-index: 3;
+    color: rgba(255,255,255,.85); text-decoration: none;
+    font-size: .82rem; font-weight: 600;
+    padding: .4rem .8rem; border-radius: 999px;
+    border: 1px solid rgba(255,255,255,.35);
+    background: rgba(255,255,255,.1);
+    white-space: nowrap;
+}
+.header-logout:hover { background: rgba(255,255,255,.22); color: #fff; }
+/* Platz lassen, damit lange Titel nicht unter den Knopf laufen */
+.has-logout .header-text { padding-right: 7rem; }
+.eyebrow { margin: 0 0 .2rem; letter-spacing: .14em; text-transform: uppercase; font-size: .72rem; color: var(--gold); }
+.site-header h1 {
+    margin: 0;
+    font-size: clamp(1.45rem, 6.4vw, 2.9rem);
+    color: #fff;
+    text-shadow: 0 2px 0 rgba(94, 15, 24, .45);
+    overflow-wrap: break-word;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+.site-header .subtitle { margin: .25rem 0 0; color: rgba(255,255,255,.8); }
+.garland {
+    position: relative; z-index: 2;
+    height: 8px;
+    background: repeating-linear-gradient(90deg,
+        var(--gold) 0 16px, var(--ginger-500) 16px 32px, #fff 32px 48px, var(--red-600) 48px 64px);
+    opacity: .95;
+}
+
+/* ---------- Blöcke ---------- */
+.card-soft {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    padding: 1rem 1.1rem;
+}
+.intro {
+    margin: 1.4rem 0 1.2rem; position: relative; z-index: 1;
+    border-left: 5px solid var(--ginger-300);
+}
+.intro p { margin: 0; font-size: .95rem; }
+
+/* ---------- Filter ---------- */
+.filters { position: relative; z-index: 1; margin-bottom: .8rem; }
+.search-row { display: flex; gap: .5rem; margin-bottom: .8rem; }
+.search-field { position: relative; flex: 1; min-width: 0; }
+.search-field input[type="search"] { width: 100%; padding-right: 2.8rem; }
+/* eigenes x statt dem des Browsers, damit es überall gleich aussieht */
+.search-field input[type="search"]::-webkit-search-cancel-button { -webkit-appearance: none; appearance: none; }
+.search-clear {
+    position: absolute; top: 50%; right: .35rem; transform: translateY(-50%);
+    width: 34px; height: 34px; border-radius: 50%;
+    border: 0; background: transparent; color: var(--ink-soft);
+    font-size: 1.4rem; line-height: 1; cursor: pointer;
+    display: grid; place-items: center;
+}
+.search-clear:hover { background: var(--ginger-100); color: var(--ink); }
+.search-clear[hidden] { display: none; }
+/* Mit JavaScript sucht die Seite beim Tippen, der Knopf wird überflüssig. */
+.js-search [data-search-submit] { display: none; }
+#results { transition: opacity .12s ease; }
+#results.is-loading { opacity: .45; }
+
+/* Alle Eingabefelder gleich gestalten. Kästchen, Farbwähler und Knöpfe
+   haben ihre eigenen Regeln und bleiben hier aussen vor. */
+input:not([type="checkbox"]):not([type="radio"]):not([type="color"]):not([type="submit"]):not([type="button"]),
+textarea, select {
+    width: 100%;
+    font: inherit;
+    font-size: 16px; /* verhindert Zoom auf iOS */
+    color: var(--ink);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: .65rem .8rem;
+    box-shadow: var(--shadow-sm);
+}
+textarea { resize: vertical; }
+input:focus-visible, textarea:focus-visible, select:focus-visible, a:focus-visible, button:focus-visible {
+    outline: 3px solid var(--ginger-300);
+    outline-offset: 2px;
+}
+
+.chip-row { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: .6rem; }
+.chip {
+    --pill: var(--ginger-500);
+    display: inline-block;
+    padding: .38rem .8rem;
+    border-radius: 999px;
+    border: 1.5px solid color-mix(in srgb, var(--pill) 45%, transparent);
+    background: var(--paper);
+    color: var(--ink);
+    text-decoration: none;
+    font-size: .86rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+.chip-on { background: var(--pill); border-color: var(--pill); color: #fff; }
+.chip-row-status .chip { --pill: var(--red-600); }
+.chip-reset { --pill: var(--ink-soft); }
+.chip-reset[hidden] { display: none; }
+.result-count { font-size: .9rem; color: var(--ink-soft); margin: .2rem 0 1rem; }
+
+/* ---------- Pills ---------- */
+.pill-row { display: flex; flex-wrap: wrap; gap: .3rem; margin: .35rem 0; }
+.pill {
+    --pill: var(--ginger-500);
+    display: inline-block;
+    padding: .18rem .6rem;
+    border-radius: 999px;
+    font-size: .78rem;
+    font-weight: 600;
+    color: #fff;
+    background: var(--pill);
+}
+.pill-sm { font-size: .72rem; padding: .12rem .5rem; }
+
+/* ---------- Geschenk-Grid ---------- */
+.grid {
+    list-style: none; padding: 0; margin: 0 0 2rem;
+    display: grid; gap: 1rem;
+    grid-template-columns: 1fr;
+    position: relative; z-index: 1;
+}
+@media (min-width: 560px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 900px) { .grid { grid-template-columns: repeat(3, 1fr); gap: 1.3rem; } }
+
+.card {
+    position: relative;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: transform .15s ease, box-shadow .15s ease;
+}
+.card:hover { transform: translateY(-3px); box-shadow: 0 4px 8px rgba(74,44,23,.08), 0 16px 32px rgba(74,44,23,.14); }
+.card-reserved { opacity: .72; }
+.card-link { display: flex; flex-direction: column; height: 100%; color: inherit; text-decoration: none; }
+.card-media { position: relative; height: 210px; flex: none; background: #fff; }
+.card-media img { width: 100%; height: 100%; object-fit: contain; background: #fff; padding: .5rem; }
+.card-media-placeholder { display: grid; place-items: center; height: 100%; font-size: 3rem; }
+.card-media-placeholder.big { font-size: 5rem; height: 220px; }
+.card-reserved .card-media img { filter: grayscale(.55); }
+
+.badge {
+    position: absolute; top: .6rem; left: .6rem;
+    background: var(--ginger-700); color: #fff;
+    padding: .22rem .65rem; border-radius: 999px;
+    font-size: .74rem; font-weight: 700; letter-spacing: .02em;
+    box-shadow: var(--shadow-sm);
+}
+.badge-qty { background: var(--green-600); }
+.badge-star { top: auto; bottom: .6rem; left: .6rem; background: var(--gold); color: var(--ginger-900); }
+
+.card-body { padding: .85rem 1rem 1rem; display: flex; flex-direction: column; flex: 1; }
+.card-title { font-size: 1.1rem; margin: 0 0 .2rem; }
+.card-text { font-size: .9rem; color: var(--ink-soft); margin: .2rem 0 .6rem; }
+.card-foot { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: .5rem; flex-wrap: wrap; }
+.price { font-weight: 700; color: var(--red-600); }
+.price.big { font-size: 1.15rem; }
+.card-cta { font-size: .85rem; font-weight: 600; color: var(--ginger-700); }
+
+/* Bearbeiten-Knopf auf der Karte, nur für angemeldete Admins */
+.card-admin {
+    position: absolute; top: .55rem; right: .55rem; z-index: 2;
+    width: 38px; height: 38px; border-radius: 50%;
+    display: grid; place-items: center;
+    background: var(--paper); color: var(--ink);
+    border: 1.5px solid var(--line); box-shadow: var(--shadow-sm);
+    text-decoration: none; font-size: 1rem; line-height: 1;
+}
+.card-admin:hover { background: var(--red-600); color: #fff; border-color: var(--red-600); }
+
+/* ---------- Admin-Leiste über der Wunschliste ---------- */
+.admin-bar {
+    position: relative; z-index: 3;
+    background: var(--red-900); color: #fff;
+    font-size: .85rem;
+}
+.admin-bar-inner { display: flex; flex-wrap: wrap; align-items: center; gap: .2rem .8rem; padding: .35rem 0; }
+.admin-bar-label { font-weight: 700; letter-spacing: .03em; opacity: .85; white-space: nowrap; }
+.admin-bar-nav { display: flex; flex-wrap: wrap; gap: .1rem; overflow-x: auto; }
+.admin-bar-nav a {
+    color: rgba(255,255,255,.88); text-decoration: none; font-weight: 600;
+    padding: .3rem .6rem; border-radius: 999px; white-space: nowrap;
+}
+.admin-bar-nav a:hover { background: rgba(255,255,255,.16); color: #fff; }
+
+/* ---------- Buttons ---------- */
+.btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: .4rem;
+    font: inherit; font-weight: 600;
+    padding: .7rem 1.1rem;
+    border-radius: 999px;
+    border: 1.5px solid transparent;
+    cursor: pointer;
+    text-decoration: none;
+    min-height: 44px;
+    max-width: 100%;
+    text-align: center;
+    overflow-wrap: anywhere;   /* lange Shop-Namen brechen um statt überzulaufen */
+}
+.btn-primary { background: var(--red-600); color: #fff; box-shadow: 0 2px 0 var(--red-800), var(--shadow-sm); }
+.btn-primary:hover { background: var(--red-500); }
+.btn-primary:active { transform: translateY(1px); box-shadow: 0 1px 0 var(--red-800); }
+.btn-ghost { background: var(--paper); color: var(--ink); border-color: var(--ginger-300); }
+.btn-big { width: 100%; font-size: 1.05rem; padding: .9rem 1.2rem; }
+.btn-mini { white-space: nowrap; padding: .35rem .7rem; font-size: .82rem; min-height: 36px; border-radius: 10px; background: var(--paper); border-color: var(--line); color: var(--ink); }
+.btn-danger { color: var(--red-600); border-color: color-mix(in srgb, var(--red-600) 35%, transparent); }
+.btn[disabled] { opacity: .5; cursor: not-allowed; }
+
+/* ---------- Meldungen ---------- */
+.flash {
+    border-radius: 12px; padding: .8rem 1rem; margin: 1rem 0;
+    font-size: .95rem; border: 1px solid; position: relative; z-index: 1;
+}
+.flash-ok    { background: color-mix(in srgb, var(--green-600) 12%, var(--paper)); border-color: var(--green-600); }
+.flash-error { background: color-mix(in srgb, var(--red-600) 10%, var(--paper));  border-color: var(--red-600); }
+.flash-info  { background: var(--paper); border-color: var(--line); }
+
+/* ---------- Detail (eigene Seite und Modal) ---------- */
+.detail-top { background: var(--red-800); padding: .8rem 0; position: relative; z-index: 1; }
+.back-link { color: #fff; text-decoration: none; font-weight: 600; font-size: .95rem; }
+.detail { padding-bottom: 2.5rem; position: relative; z-index: 1; }
+.detail-card {
+    background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+    box-shadow: var(--shadow); overflow: hidden; margin: 1.2rem 0;
+}
+.detail-media img { width: 100%; max-height: 46vh; object-fit: contain; background: #fff; padding: .6rem; }
+.detail-body { padding: 1.1rem 1.1rem 1.4rem; }
+.detail-body h1 { font-size: 1.6rem; }
+.meta-row { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; margin: .5rem 0 .9rem; }
+.meta-tag { font-size: .82rem; background: var(--ginger-100); color: var(--ginger-900); border-radius: 999px; padding: .2rem .65rem; }
+.status { margin-top: 1rem; font-weight: 700; border-radius: 12px; padding: .7rem .9rem; }
+.status-free  { background: color-mix(in srgb, var(--green-600) 12%, var(--paper)); color: var(--green-600); }
+.status-taken { background: color-mix(in srgb, var(--red-600) 10%, var(--paper)); color: var(--red-600); }
+
+.give-box, .cancel-box {
+    background: var(--paper);
+    border: 2px dashed var(--ginger-300);
+    border-radius: var(--radius); padding: 1.1rem; margin-bottom: 1.2rem;
+}
+.cancel-box { border-style: solid; border-color: var(--line); border-width: 1px; }
+.cancel-box summary { cursor: pointer; font-weight: 600; }
+.stack { display: flex; flex-direction: column; gap: .5rem; }
+.stack label { font-weight: 600; font-size: .9rem; margin-top: .4rem; }
+.check { display: flex; gap: .6rem; align-items: flex-start; font-weight: 400 !important; margin: .6rem 0; }
+.check input { width: 22px; height: 22px; flex: none; margin-top: .1rem; accent-color: var(--red-600); }
+
+.hint-box {
+    background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: .9rem 1.1rem; margin-top: 1.2rem;
+}
+.hint-box p { margin: 0; }
+.reserve-note { margin: .8rem 0 0; }
+
+.code-box {
+    background: color-mix(in srgb, var(--gold) 20%, var(--paper));
+    border: 1px solid var(--gold); border-radius: var(--radius);
+    padding: 1rem; margin-top: 1.2rem; text-align: center;
+}
+.code-box p { margin: .2rem 0; }
+.mail-ok { font-weight: 700; font-size: 1.05rem; }
+/* kleiner Hinweis direkt unter einem Eingabefeld */
+.stack .field-hint { margin: -.15rem 0 .2rem; line-height: 1.4; }
+
+/* Storno-Seite */
+.storno-card .storno-gift {
+    border: 1px solid var(--line); border-radius: 12px;
+    padding: 1rem; margin: 1rem 0; text-align: center;
+}
+.storno-gift img { max-width: 160px; max-height: 140px; object-fit: contain; margin: 0 auto .6rem; }
+.storno-gift .price { color: var(--red-600); font-weight: 700; margin-top: .3rem; }
+.code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 2rem; font-weight: 700; letter-spacing: .18em; }
+
+/* ---------- Modal ---------- */
+.modal {
+    width: min(680px, 100% - 1.5rem);
+    max-height: 88vh;
+    max-height: 88dvh;          /* dvh: ohne die ein-/ausfahrende Adressleiste */
+    padding: 0;
+    border: none;
+    border-radius: var(--radius);
+    background: var(--snow);
+    color: var(--ink);
+    box-shadow: 0 20px 60px rgba(58, 35, 24, .35);
+    overflow: hidden;
+}
+.modal::backdrop { background: rgba(58, 35, 24, .55); backdrop-filter: blur(2px); }
+.modal[open] { animation: modal-in .18s ease-out; }
+@keyframes modal-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .modal[open] { animation: none; } }
+
+.modal-close {
+    position: absolute; top: .5rem; right: .5rem; z-index: 5;
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    background: var(--red-800);          /* dunkel, damit er auf jedem Bild auffällt */
+    color: #fff;
+    font-size: 1.7rem; line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,.35);
+    display: grid; place-items: center;
+    -webkit-tap-highlight-color: transparent;
+}
+.modal-close:hover,
+.modal-close:focus-visible { background: var(--red-600); }
+.modal-scroll {
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 88vh;
+    max-height: 88dvh;
+    padding: 1rem 1rem 1.3rem;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+}
+.modal .detail-card { margin-top: 0; }
+.modal .detail-inner,
+.modal .detail-body,
+.modal .prose { max-width: 100%; overflow-wrap: anywhere; }
+.modal .detail-body h1 { padding-right: 2.5rem; }
+.modal .detail-media img { max-height: 38vh; }
+.modal-loading { padding: 3rem 1rem; text-align: center; color: var(--ink-soft); }
+
+@media (max-width: 559px) {
+    .modal {
+        width: 100%; max-width: 100%;
+        max-height: 85vh;
+        max-height: 85dvh;
+        margin: auto auto 0;
+        border-radius: var(--radius) var(--radius) 0 0;
+    }
+    .modal-scroll {
+        max-height: 85vh;
+        max-height: 85dvh;
+        padding: 1rem .9rem calc(1.3rem + env(safe-area-inset-bottom));
+    }
+    /* Platz für den Schliessen-Knopf, damit er nichts überdeckt */
+    .modal .detail-card { margin-top: 2.6rem; }
+    .modal .detail-media img { max-height: 30vh; max-height: 30dvh; }
+}
+
+/* ---------- Leerzustand ---------- */
+.empty { text-align: center; padding: 2.5rem 1rem; position: relative; z-index: 1; }
+.empty-emoji { font-size: 3rem; margin: 0; }
+.admin-link { text-align: center; margin: 2rem 0 3rem; position: relative; z-index: 1; }
+.admin-link a { color: var(--ink-soft); font-size: .85rem; }
+
+/* ---------- Login ---------- */
+.page-login { display: grid; place-items: center; min-height: 100vh; }
+.login-wrap { width: min(420px, 100% - 2rem); position: relative; z-index: 1; }
+.login-card {
+    background: var(--paper); border: 1px solid var(--line); border-radius: 20px;
+    box-shadow: var(--shadow); padding: 2rem 1.5rem; text-align: center;
+}
+.login-emoji { font-size: 3rem; }
+/* Lange Listennamen sauber trennen statt mitten im Wort abbrechen
+   («Weihnachts-wunschliste» statt «Weihnachtswunschlist/e»). */
+.login-card h1 {
+    font-size: clamp(1.35rem, 5.5vw, 1.7rem);
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    text-wrap: balance;
+}
+.login-card form { text-align: left; margin-top: 1rem; }
+
+/* ---------- Admin ---------- */
+.admin-header { background: linear-gradient(170deg, var(--red-700), var(--red-900)); color: #fff; padding: 1rem 0 0; position: relative; z-index: 1; }
+.admin-header h1 { color: #fff; font-size: 1.3rem; margin: 0 0 .5rem; }
+.admin-nav { display: flex; gap: .3rem; overflow-x: auto; padding-bottom: .5rem; }
+.admin-nav a {
+    color: rgba(255,255,255,.85); text-decoration: none; font-size: .9rem; font-weight: 600;
+    padding: .45rem .8rem; border-radius: 999px 999px 0 0; white-space: nowrap;
+}
+.admin-nav a.on { background: var(--snow); color: var(--red-800); }
+.admin { padding: 1.2rem 0 3rem; position: relative; z-index: 1; }
+.panel {
+    background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+    box-shadow: var(--shadow-sm); padding: 1.1rem; margin-bottom: 1.3rem;
+}
+.form-grid { display: grid; gap: .9rem; grid-template-columns: 1fr; }
+@media (min-width: 680px) {
+    .form-grid { grid-template-columns: repeat(2, 1fr); }
+    .field-full { grid-column: 1 / -1; }
+    .field-actions { grid-column: 1 / -1; }
+}
+.field label { display: block; font-weight: 600; font-size: .88rem; margin-bottom: .3rem; }
+.field-actions { display: flex; gap: .6rem; flex-wrap: wrap; }
+.current-image { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+.current-image img { width: 110px; height: 85px; object-fit: cover; border-radius: 10px; border: 1px solid var(--line); }
+input[type="color"] { height: 48px; padding: .2rem; }
+
+.panel-sub { font-family: var(--font-body); font-size: .85rem; font-weight: 600; color: var(--ink-soft); white-space: nowrap; }
+
+.panel-import { border-color: var(--ginger-300); background: color-mix(in srgb, var(--ginger-100) 45%, var(--paper)); }
+.panel-import .search-row { margin-bottom: 0; }
+.check-inline { margin: .5rem 0 0; align-items: center; }
+.check-inline input { width: 18px; height: 18px; }
+
+.paste-preview { display: flex; gap: .7rem; align-items: center; margin-top: .5rem; }
+.paste-preview[hidden] { display: none; }   /* sonst gewinnt display:flex gegen das hidden-Attribut */
+.paste-preview img { width: 72px; height: 56px; object-fit: contain; background: #fff;
+    border: 1px solid var(--line); border-radius: 8px; }
+kbd { font-family: ui-monospace, Menlo, monospace; font-size: .8em; background: var(--ginger-100);
+    border-radius: 4px; padding: .05em .35em; }
+
+.tag-picker { display: flex; flex-wrap: wrap; gap: .45rem; }
+.tag-check { --pill: var(--ginger-500); display: inline-flex; align-items: center; gap: .4rem; border: 1.5px solid var(--line); border-radius: 999px; padding: .4rem .8rem; cursor: pointer; font-size: .9rem; }
+.tag-check:has(input:checked) { background: var(--pill); border-color: var(--pill); color: #fff; }
+.tag-check input { width: 18px; height: 18px; accent-color: var(--red-600); }
+
+.admin-list { list-style: none; margin: 0; padding: 0; }
+.admin-list > li {
+    display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; justify-content: space-between;
+    padding: .8rem 0; border-top: 1px solid var(--line);
+}
+.admin-list > li:first-child { border-top: 0; }
+.row-actions { display: flex; gap: .4rem; align-items: center; flex-wrap: wrap; }
+.row-actions form { margin: 0; }
+.ag-main { display: flex; gap: .8rem; align-items: center; min-width: 0; flex: 1; }
+.ag-thumb { width: 56px; height: 56px; border-radius: 10px; object-fit: cover; flex: none; border: 1px solid var(--line); }
+.ag-thumb-empty { display: grid; place-items: center; font-size: 1.6rem; background: var(--ginger-100); }
+
+.price-list > li { gap: .8rem; }
+.price-input { display: flex; align-items: center; gap: .4rem; flex: none; }
+.price-input input { width: 7.5rem; text-align: right; }
+
+.table-scroll { overflow-x: auto; }
+.table { width: 100%; border-collapse: collapse; font-size: .92rem; }
+.table th, .table td { text-align: left; padding: .6rem .5rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+.table th { font-size: .78rem; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-soft); }
+.table form { margin: 0; }
+
+.visually-hidden {
+    position: absolute; width: 1px; height: 1px; overflow: hidden;
+    clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+
+/* ---------- Mehrere Wunschlisten ---------- */
+.admin-top { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; justify-content: space-between; }
+.list-switch { display: flex; gap: .4rem; align-items: center; margin-bottom: .5rem; }
+.list-switch select {
+    font-size: .9rem; padding: .35rem .6rem; border-radius: 10px;
+    background: rgba(255,255,255,.14); color: #fff; border-color: rgba(255,255,255,.3);
+    box-shadow: none; max-width: 15rem;
+}
+.list-switch select option { color: var(--ink); background: var(--paper); }
+
+.other-lists {
+    display: flex; flex-wrap: wrap; gap: .4rem; align-items: center;
+    justify-content: center; margin: 2rem 0 0; position: relative; z-index: 1;
+}
+.open-lists { margin-top: 1rem; line-height: 1.8; }
+.gate-hint {
+    margin: 1rem 0 0; text-align: left;
+    border-top: 1px solid var(--line); padding-top: .8rem;
+}
+
+.theme-picker { display: grid; gap: .6rem; grid-template-columns: 1fr; }
+@media (min-width: 560px) { .theme-picker { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 900px) { .theme-picker { grid-template-columns: repeat(3, 1fr); } }
+.theme-card { position: relative; cursor: pointer; display: block; }
+.theme-card input { position: absolute; opacity: 0; pointer-events: none; }
+.theme-body {
+    display: block; padding: .7rem .8rem; border-radius: 14px;
+    border: 2px solid var(--line); background: var(--paper); height: 100%;
+}
+.theme-card input:checked + .theme-body { border-color: var(--red-600); box-shadow: var(--shadow-sm); }
+.theme-card input:focus-visible + .theme-body { outline: 3px solid var(--ginger-300); outline-offset: 2px; }
+.theme-body strong { display: block; font-size: .92rem; margin: .35rem 0 .1rem; }
+.theme-swatch { display: flex; gap: .25rem; }
+.theme-swatch i { width: 22px; height: 12px; border-radius: 4px; display: block; }
+
+/* ---------- Fuss ---------- */
+.site-footer { text-align: center; padding: 1.5rem 1rem 2.5rem; color: var(--ink-soft); font-size: .9rem; position: relative; z-index: 1; }
+
+
+/* ===========================================================
+   Designs pro Wunschliste  (body[data-theme="…"])
+   Jedes Design setzt nur die Farbrollen neu:
+     --red-*    = Hauptfarbe und Kopfzeile
+     --ginger-* = Zweitfarbe (Tags, Rahmen)
+     --gold     = Hervorhebung
+     --snow     = Seitenhintergrund
+     --snow-blue= fallende Punkte (Schnee / Konfetti)
+   =========================================================== */
+
+/* --- Weihnachten: Rot & Lebkuchen (Standard, siehe :root) --- */
+
+/* --- Weihnachten: Schnee & Eis --- */
+body[data-theme="weihnachten-schnee"] {
+    --red-900: #0a2433; --red-800: #11384d; --red-700: #1b4965;
+    --red-600: #2a6f97; --red-500: #3e88b4;
+    --ginger-900: #16323f; --ginger-700: #3d6c85; --ginger-500: #5e8ca7;
+    --ginger-300: #9ec6dc; --ginger-100: #e2eff7;
+    --gold: #7fc3e3; --snow: #f5fafd; --snow-blue: #a9cfe6; --line: #d9e7f0;
+}
+
+/* --- Geburtstag: Junge --- */
+body[data-theme="geburtstag-junge"] {
+    --red-900: #0b2f4d; --red-800: #10456e; --red-700: #165b91;
+    --red-600: #1b7fc4; --red-500: #3697d8;
+    --ginger-900: #0f3f3a; --ginger-700: #1d7a6e; --ginger-500: #26a69a;
+    --ginger-300: #86d9d0; --ginger-100: #ddf2ef;
+    --gold: #ffcf5c; --snow: #f4faff; --snow-blue: #8ecae6; --line: #d7e6f2;
+}
+
+/* --- Geburtstag: Mädchen --- */
+body[data-theme="geburtstag-maedchen"] {
+    --red-900: #4d1030; --red-800: #7a1c48; --red-700: #a3265e;
+    --red-600: #d6336c; --red-500: #e85a88;
+    --ginger-900: #3f1a52; --ginger-700: #7a3f9e; --ginger-500: #a86fd1;
+    --ginger-300: #d9b3ee; --ginger-100: #f6e9fc;
+    --gold: #ffb3d1; --snow: #fff6fa; --snow-blue: #f4b8d4; --line: #f2dde6;
+}
+
+/* --- Geburtstag: Junge und Mädchen --- */
+body[data-theme="geburtstag-zusammen"] {
+    --red-900: #2b1655; --red-800: #40228a; --red-700: #5733ad;
+    --red-600: #7048c4; --red-500: #8a66d6;
+    --ginger-900: #5e1038; --ginger-700: #b02a66; --ginger-500: #ef5da8;
+    --ginger-300: #f9aed1; --ginger-100: #fde7f1;
+    --gold: #ffd166; --snow: #faf7ff; --snow-blue: #c9b3f0; --line: #e6dff5;
+}
+
+/* --- Geburtstag: neutral --- */
+body[data-theme="geburtstag-neutral"] {
+    --red-900: #5c2c08; --red-800: #8a4410; --red-700: #b35a17;
+    --red-600: #e07a1f; --red-500: #f0913c;
+    --ginger-900: #14402c; --ginger-700: #226b4a; --ginger-500: #2f9e6e;
+    --ginger-300: #8fd7bb; --ginger-100: #e0f3ea;
+    --gold: #ffd166; --snow: #fffaf2; --snow-blue: #ffcf96; --line: #f0e2cf;
+}
+
+/* --- Geburtstag: Erwachsene --- */
+body[data-theme="geburtstag-erwachsen"] {
+    --red-900: #0d1117; --red-800: #1a2230; --red-700: #2a3547;
+    --red-600: #37475c; --red-500: #4a5d75;
+    --ginger-900: #4a3a1c; --ginger-700: #7d6436; --ginger-500: #b08d57;
+    --ginger-300: #d9c49a; --ginger-100: #f2ebdd;
+    --gold: #c4a265; --snow: #f8f7f4; --snow-blue: #d9d2c4; --line: #e6e1d6;
+}
+
+/* --- Ostern --- */
+body[data-theme="ostern"] {
+    --red-900: #2f4a1f; --red-800: #46682f; --red-700: #5c863d;
+    --red-600: #74a44b; --red-500: #8cbb63;
+    --ginger-900: #4a2f5e; --ginger-700: #7b4f9c; --ginger-500: #a97bc4;
+    --ginger-300: #dcc2ec; --ginger-100: #f4eaf9;
+    --gold: #f4d35e; --snow: #fcfdf5; --snow-blue: #ffe08a; --line: #e6ecd6;
+}
+
+/* --- Natur & Wald --- */
+body[data-theme="wald"] {
+    --red-900: #0f2a1c; --red-800: #17422b; --red-700: #205c3c;
+    --red-600: #2f6b45; --red-500: #3e8a5a;
+    --ginger-900: #3d2d18; --ginger-700: #6b5130; --ginger-500: #8a6f4b;
+    --ginger-300: #c4ae8c; --ginger-100: #ece3d4;
+    --gold: #c9a227; --snow: #f8faf6; --snow-blue: #c3d9c8; --line: #e0e6da;
+}
+
+/* --- Schlicht --- */
+body[data-theme="schlicht"] {
+    --red-900: #0f172a; --red-800: #1e293b; --red-700: #273549;
+    --red-600: #334155; --red-500: #475569;
+    --ginger-900: #1e293b; --ginger-700: #475569; --ginger-500: #64748b;
+    --ginger-300: #b6c2d1; --ginger-100: #e9eef4;
+    --gold: #8aa0b8; --snow: #f8fafc; --snow-blue: #cbd5e1; --line: #e2e8f0;
+}
+
+/* Im Dunkelmodus bleiben nur die neutralen Flächen dunkel,
+   die Designfarben darüber gelten weiter. Dieser Block muss
+   nach den Designs stehen. */
+@media (prefers-color-scheme: dark) {
+    body[data-theme] {
+        --snow:      #14191a;
+        --paper:     #1d2426;
+        --ink:       #ede6dd;
+        --ink-soft:  #a79d93;
+        --line:      #2e3739;
+        --ginger-100:#2b2522;
+    }
+}
+
+/* --- Streudeko: Schnee oder Konfetti --- */
+body[data-deco="confetti"] .snow {
+    background-image:
+        radial-gradient(3px 3px at 20% 10%, var(--red-600), transparent),
+        radial-gradient(3px 3px at 70% 28%, var(--gold), transparent),
+        radial-gradient(3px 3px at 41% 62%, var(--ginger-500), transparent),
+        radial-gradient(3px 3px at 88% 78%, var(--red-500), transparent),
+        radial-gradient(3px 3px at 9% 86%, var(--gold), transparent),
+        radial-gradient(3px 3px at 55% 94%, var(--ginger-300), transparent);
+    opacity: .5;
+}
+body[data-deco="none"] .snow,
+body[data-deco="none"] .site-header::before { display: none; }
+body[data-deco="none"] .site-header::after,
+body[data-deco="confetti"] .site-header::after {
+    background: radial-gradient(circle at 16px 26px, transparent 15px, var(--snow) 16px) repeat-x;
+    background-size: 32px 26px;
+}
